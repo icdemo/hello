@@ -24,6 +24,18 @@ jobs:
         run: mvn -B package
       - name: Test with Maven
         run: mvn -B test
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            target/surefire-reports
+            target/site
+      - name: Show test failures
+        shell: bash
+        run: |
+          ./script.sh
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
