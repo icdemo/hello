@@ -63,3 +63,33 @@ jobs:
           tags: |
             iclimdocker/hello:latest
             ${{ steps.meta.outputs.tags }}
+  integration:
+    needs: deploy
+    runs-on: ubuntu-latest
+    container: maven:3.9.9-amazoncorretto-17
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      hello:
+        credentials:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        image: iclimdocker/hello
+        options: >-
+          --health-cmd "curl -f http://hello:8080/ping"
+          --health-interval 30s
+          --health-timeout 10s
+          --health-retries 5
+          --health-start-period 30s
+    steps:
+      - name: Run Test Service
+        run: |
+          curl --location 'http://hello:8080/api/v1/say/luigi/abc'
+          curl --location 'http://hello:8080/api/v1/say/mario/xyz'
+          curl --location 'http://hello:8080/api/v1/get/mario'
+          curl --location 'http://hello:8080/api/v1/get/luigi'
