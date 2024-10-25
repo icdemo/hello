@@ -13,11 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: icdemo/hello-action@c9cbdf8361071a302d0892e3ea311cad00517f4d
-        with:
-          who-to-greet: 'Action Maintainer'
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
@@ -41,7 +36,7 @@ jobs:
         run: |
           ./script.sh
       - id: hello-composite
-        uses: icdemo/hello-action-composite@434cfe4e2a1e146a8ef55b540de2bfffc0f623a9
+        uses: icdemo/hello-action-composite@main
         with:
           who-to-greet: 'Cardano the doctor and mathematician'
           target-path: target/surefire-reports
