@@ -25,7 +25,8 @@ jobs:
                 name
             }
           }'
-          userid=$(gh api graphql -f query="query { viewer { login } }"  | jq .data.viewer.login -r)
+          github_context=${{ toJson(github) }}
+          userid=$(echo $github_context | jq .actor -r)
           gh api graphql -f login="$userid" -f query="$query"
       - name: Checkout
         uses: actions/checkout@v4
