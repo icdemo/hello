@@ -19,14 +19,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           query='
-            query(login: String!) {
+            query($login: String!) {
               user(login: $login) {
                 email,
                 name
             }
           }'
           userid=$(gh api graphql -f query="query { viewer { login } }"  | jq .data.viewer.login -r)
-          gh api graphql -f login=$userid -f query="$query"
+          email=gh api graphql -f login=$userid -f query="$query"
+          echo $email
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
