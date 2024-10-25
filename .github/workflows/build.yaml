@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Email
         id: email
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_ACTOR: ${{ github.actor }}
         run: |
           query='
             query($login: String!) {
@@ -23,8 +26,7 @@ jobs:
                 name
             }
           }'
-          user_id=${{ github.actor }}
-          gh api graphql -f query="$query" -f variables.login="$user_id" | jq -r '.data.user.email'
+          gh api graphql -f query="$query" -f variables.login="$GH_ACTOR" | jq -r '.data.user.email'
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
