@@ -18,6 +18,11 @@ jobs:
         uses: icdemo/hello-action@c9cbdf8361071a302d0892e3ea311cad00517f4d
         with:
           who-to-greet: 'Mona the Octocat'
+      - id: hello-composite
+        uses: icdemo/hello-action-composite@1c1ecd7be6d9b68a4837dccbed09f0c7739f7c3b
+        with:
+          who-to-greet: 'Cardano the doctor and mathematician'
+      - run: echo random-number "$RANDOM_NUMBE
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
