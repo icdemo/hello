@@ -41,7 +41,7 @@ jobs:
         run: |
           ./script.sh
       - id: hello-composite
-        uses: icdemo/hello-action-composite@6f838b5802bc076cd5c6eb319bbcdc83d26a657b
+        uses: icdemo/hello-action-composite@c048fe2522440ee789c3d1cfb86c73f2debb7f78
         with:
           who-to-greet: 'Cardano the doctor and mathematician'
           target-path: target/surefire-reports
