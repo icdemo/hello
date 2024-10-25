@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: icdemo/hello-action
+        uses: icdemo/hello-action@c9cbdf8361071a302d0892e3ea311cad00517f4d
         with:
           who-to-greet: 'Mona the Octocat'
       - name: Checkout
