@@ -41,10 +41,10 @@ jobs:
         run: |
           ./script.sh
       - id: hello-composite
-        uses: icdemo/hello-action-composite@a1f5f65dd88edcc1a71b71b331582fc4af19af4d
+        uses: icdemo/hello-action-composite@6f838b5802bc076cd5c6eb319bbcdc83d26a657b
         with:
           who-to-greet: 'Cardano the doctor and mathematician'
-          target-dir: 'target/surefire-reports'
+          target-path: target/surefire-reports
   deploy:
     needs: build
     runs-on: ubuntu-latest
