@@ -23,7 +23,7 @@ jobs:
                 name
             }
           }'
-          gh_context=${{ toJson(github) }}
+          gh_context=$(echo ${{ toJson(github) }})
           userid=$(echo $gh_context | jq .actor -r)
           echo $userid
       - name: Checkout
