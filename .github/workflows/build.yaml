@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Email
         id: email
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           query='
             query ($login: String!, $org: String!) {
