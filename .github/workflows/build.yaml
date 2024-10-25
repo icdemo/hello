@@ -17,11 +17,7 @@ jobs:
         id: hello
         uses: icdemo/hello-action@c9cbdf8361071a302d0892e3ea311cad00517f4d
         with:
-          who-to-greet: 'Mona the Octocat'
-      - id: hello-composite
-        uses: icdemo/hello-action-composite@b62c5501eba76f8028fc9ebc61d243583f30f8d8
-        with:
-          who-to-greet: 'Cardano the doctor and mathematician'
+          who-to-greet: 'Action Maintainer'
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
@@ -44,7 +40,11 @@ jobs:
         shell: bash
         run: |
           ./script.sh
-
+      - id: hello-composite
+        uses: icdemo/hello-action-composite@a1f5f65dd88edcc1a71b71b331582fc4af19af4d
+        with:
+          who-to-greet: 'Cardano the doctor and mathematician'
+          target-dir: 'target/surefire-reports'
   deploy:
     needs: build
     runs-on: ubuntu-latest
