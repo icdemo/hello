@@ -13,6 +13,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Email
+        id: email
+        run: echo "::set-output name=email::$(echo $GITHUB_ACTOR | tr '@' ' ')"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
