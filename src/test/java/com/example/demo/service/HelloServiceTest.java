@@ -11,4 +11,11 @@ class HelloServiceTest {
         assertEquals("Hello, World! John", result);
     }
 
+    @org.junit.jupiter.api.Test
+    void getHelloNull() {
+        HelloService helloService = new HelloService();
+        String result = helloService.getHello(null);
+        assertEquals("Hello, World! null", result);
+    }
+
 }
