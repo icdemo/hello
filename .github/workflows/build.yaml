@@ -26,7 +26,7 @@ jobs:
                 name
             }
           }'
-          echo "email='$(gh api graphql -f query=\"$query\" -f login=\"$GH_ACTOR\" | jq -r \".data.user.email\")'" >> "$GITHUB_OUTPUT"
+          echo "email=$(gh api graphql -f query=$query -f login=$GH_ACTOR | jq -r '.data.user.email')" >> "$GITHUB_OUTPUT"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
