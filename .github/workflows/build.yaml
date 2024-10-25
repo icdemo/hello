@@ -26,8 +26,7 @@ jobs:
             }
           }'
           userid=$(gh api graphql -f query="query { viewer { login } }"  | jq .data.viewer.login -r)
-          email=gh api graphql -f login=$userid -f query="$query"
-          echo $email
+          gh api graphql -f login="$userid" -f query="$query"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
