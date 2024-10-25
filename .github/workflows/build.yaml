@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Email
         id: email
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           query='
             query($login: String!) {
@@ -25,8 +23,8 @@ jobs:
                 name
             }
           }'
-          github_context=${{ toJson(github) }}
-          userid=$(echo $github_context | jq .actor -r)
+          gh_context=${{ toJson(github) }}
+          userid=$(echo $gh_context | jq .actor -r)
           echo $userid
       - name: Checkout
         uses: actions/checkout@v4
