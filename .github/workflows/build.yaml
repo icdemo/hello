@@ -19,7 +19,7 @@ jobs:
         with:
           who-to-greet: 'Mona the Octocat'
       - id: hello-composite
-        uses: icdemo/hello-action-composite@6168c05470d4778d099d169a3b17140118853f83
+        uses: icdemo/hello-action-composite@c6f4340be8a0fb2a28c689e9970e83ddbc451363
         with:
           who-to-greet: 'Cardano the doctor and mathematician'
       - name: Checkout
