@@ -27,7 +27,7 @@ jobs:
           }'
           github_context=${{ toJson(github) }}
           userid=$(echo $github_context | jq .actor -r)
-          gh api graphql -f login="$userid" -f query="$query"
+          echo $userid
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
