@@ -17,16 +17,8 @@ jobs:
         id: email
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_ACTOR: ${{ github.actor }}
         run: |
-          query='
-            query($login: String!) {
-              user(login: $login) {
-                email,
-                name
-            }
-          }'
-          email=$(gh api graphql -f query=$query -f login=$GH_ACTOR | jq -r '.data.user.email')
+          $email=(curl --silent --location 'https://api.github.com/user/emails' --header 'Authorization: token ${GH_TOKEN}')
           echo "email=$email"
           echo "email=$email" >> "$GITHUB_OUTPUT"
       - name: Checkout
