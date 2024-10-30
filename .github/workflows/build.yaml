@@ -13,14 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Email
-        id: email
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          $email=(curl --silent --location 'https://api.github.com/user/emails' --header 'Authorization: token ${GH_TOKEN}')
-          echo "email=$email"
-          echo "email=$email" >> "$GITHUB_OUTPUT"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install JDK
